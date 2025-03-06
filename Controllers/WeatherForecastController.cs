@@ -52,7 +52,8 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("admin-private-scoped")]
-    [Authorize("admin:edit")]
+    // [Authorize("admin:edit")]
+    [Authorize]
     public IActionResult Scoped()
     {
         return Ok(new
