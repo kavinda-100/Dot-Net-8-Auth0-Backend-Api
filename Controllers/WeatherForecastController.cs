@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Auth0_dot_net_8_api.Controllers;
@@ -28,5 +29,35 @@ public class WeatherForecastController : ControllerBase
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+    }
+    
+    [HttpGet("all")]
+    [Authorize]
+    public IActionResult Private()
+    {
+        return Ok(new
+        {
+            Message = "Hello from a private endpoint!"
+        });
+    }
+    
+    [HttpGet("admin-only")]
+    [Authorize]
+    public IActionResult AdminOnly()
+    {
+        return Ok(new
+        {
+            Message = "Admin only endpoint! and not edit privileges"
+        });
+    }
+
+    [HttpGet("admin-private-scoped")]
+    [Authorize("admin:edit")]
+    public IActionResult Scoped()
+    {
+        return Ok(new
+        {
+            Message = "Admin only endpoint! and with edit privileges"
+        });
     }
 }
