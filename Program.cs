@@ -42,6 +42,8 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
+//! Add the corect Domain and Audience to the appSettings.json
+//? Auth0 configuration
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -63,7 +65,7 @@ builder.Services
             )
         );
     });
-
+//? Register the scope authorization handler
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
 var app = builder.Build();
