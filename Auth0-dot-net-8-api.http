@@ -1,0 +1,6 @@
+@Auth0_dot_net_8_api_HostAddress = http://localhost:5047
+
+GET {{Auth0_dot_net_8_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
